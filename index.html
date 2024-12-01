@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio - Nur Nabila</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            background: linear-gradient(120deg, #fdf2f8 0%, #eff6ff 100%);
+            position: relative;
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            text-align: center;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: headerGlow 3s infinite;
+            border: 2px solid rgba(255, 214, 230, 0.3);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                #ffd6e6, #e8f0ff, #ffe8f0, #ffd6e6);
+            background-size: 400% 400%;
+            z-index: -1;
+            border-radius: 22px;
+            animation: gradientBorder 15s linear infinite;
+            filter: blur(10px);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 10px 10px, 
+                rgba(255, 214, 230, 0.2) 2px, transparent 0);
+            background-size: 30px 30px;
+            z-index: -1;
+            animation: floatingDots 20s linear infinite;
+        }
+
+        .header h1 {
+            color: #5a5a5a;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header img {
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header img:hover {
+            transform: scale(1.05);
+        }
+
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        .navigation {
+            background-color: #ffe8f0;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .navigation a {
+            color: #7c7c7c;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .navigation a:hover {
+            background-color: #ffd6e6;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+        .navigation a::after {
+            content: '🐱';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .navigation a:hover::after {
+            opacity: 1;
+            top: -15px;
+        }
+        .content {
+            background-color: transparent; /* Changed from white */
+            padding: 20px;
+            animation: scaleIn 1s ease-out;
+        }
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 214, 230, 0.3);
+        }
+
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%
+            );
+            animation: shine 3s infinite;
+        }
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .cat-animation {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .floating-cats {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .floating-cat {
+            position: absolute;
+            animation: float 15s linear infinite;
+        }
+        @keyframes float {
+            from { transform: translateX(-100vw) rotate(0deg); }
+            to { transform: translateX(100vw) rotate(360deg); }
+        }
+        marquee {
+            background-color: #e8f0ff;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            animation: glow 2s infinite;
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px #ffd6e6; }
+            50% { box-shadow: 0 0 20px #ffd6e6; }
+        }
+        .quote {
+            text-align: center;
+            font-style: italic;
+            margin: 20px 0;
+            animation: typing 3.5s steps(40, end);
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #ffd6e6;
+            width: fit-content;
+            margin: 20px auto;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        .background-design {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.4;
+        }
+        .background-design::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 10%, var(--primary-color) 0.5%, transparent 2%),
+                radial-gradient(circle at 90% 20%, var(--secondary-color) 0.5%, transparent 2%),
+                radial-gradient(circle at 30% 70%, var(--accent-color) 0.5%, transparent 2%),
+                radial-gradient(circle at 80% 80%, var(--primary-color) 0.5%, transparent 2%);
+            animation: backgroundFloat 15s infinite linear;
+        }
+        .background-design::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, var(--primary-color) 0.5%, transparent 1%) 0 0,
+                linear-gradient(45deg, transparent 1%, var(--secondary-color) 0.5%) 50px 50px;
+            background-size: 100px 100px;
+            opacity: 0.3;
+            animation: patternMove 20s infinite linear;
+        }
+        @keyframes backgroundFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(1deg); }
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+        .corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.5;
+        }
+
+        .corner-tl { top: 0; left: 0; border-top: 3px solid #ffd6e6; border-left: 3px solid #ffd6e6; border-radius: 10px 0 0 0; }
+        .corner-tr { top: 0; right: 0; border-top: 3px solid #ffd6e6; border-right: 3px solid #ffd6e6; border-radius: 0 10px 0 0; }
+        .corner-bl { bottom: 0; left: 0; border-bottom: 3px solid #ffd6e6; border-left: 3px solid #ffd6e6; border-radius: 0 0 0 10px; }
+        .corner-br { bottom: 0; right: 0; border-bottom: 3px solid #ffd6e6; border-right: 3px solid #ffd6e6; border-radius: 0 0 10px 0; }
+
+
+        .corner-decoration {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .corner-decoration.top-left {
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at 0 0, var(--primary-color), transparent 70%);
+        }
+
+        .corner-decoration.top-right {
+            top: 0;
+            right: 0;
+            background: radial-gradient(circle at 100% 0, var(--secondary-color), transparent 70%);
+        }
+
+        .corner-decoration.bottom-left {
+            bottom: 0;
+            left: 0;
+            background: radial-gradient(circle at 0 100%, var(--accent-color), transparent 70%);
+        }
+        .corner-decoration.bottom-right {
+            bottom: 0;
+            right: 0;
+            background: radial-gradient(circle at 100% 100%, var(--primary-color), transparent 70%);
+        }
+
+        @keyframes headerGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 214, 230, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 214, 230, 0.5); }
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        @keyframes floatingDots {
+            0% { background-position: 0 0; }
+            100% { background-position: 30px 30px; }
+        }
+
+        .shimmer {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            animation: shimmer 5s infinite;
+            transform: skewX(-20deg);
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+        
+        .cat-showcase {
+            position: relative;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .cat-showcase img {
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .cat-showcase img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .quote-container {
+            background: linear-gradient(135deg, #ffd6e6 0%, #fff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .decorative-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 214, 230, 0.4) 0%, transparent 8%),
+                radial-gradient(circle at 80% 80%, rgba(232, 240, 255, 0.4) 0%, transparent 8%);
+            background-size: 30px 30px;
+            animation: patternFloat 20s linear infinite;
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 214, 230, 0.3);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #ffd6e6;
+            animation: bounce 2s infinite;
+        }
+
+        .welcome-text {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #5a5a5a, #ffd6e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: textGlow 2s infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 214, 230, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(255, 214, 230, 0.8); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        marquee {
+            background: linear-gradient(90deg, #e8f0ff, #ffd6e6, #e8f0ff);
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .social-button {
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #ffd6e6, #e8f0ff);
+            color: #5a5a5a;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .anime-card {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 214, 230, 0.2));
+        border: 1px solid rgba(255, 214, 230, 0.5);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .anime-card::before {
+        content: '⚡';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        font-size: 24px;
+        opacity: 0.2;
+        transform: rotate(45deg);
+    }
+
+    .anime-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(145deg, rgba(255, 214, 230, 0.2), rgba(255, 255, 255, 0.9));
+    }
+
+    .anime-card .feature-icon {
+        animation: pulseGlow 2s infinite;
+    }
+
+    .anime-tag {
+        display: inline-block;
+        padding: 4px 8px;
+        background: linear-gradient(45deg, #ffd6e6, #e8f0ff);
+        border-radius: 20px;
+        font-size: 0.8em;
+        margin-top: 10px;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+    }
+
+    .anime-card:hover .anime-tag {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    @keyframes pulseGlow {
+        0%, 100% { 
+            text-shadow: 0 0 5px rgba(255, 214, 230, 0.5);
+            transform: scale(1);
+        }
+        50% { 
+            text-shadow: 0 0 15px rgba(255, 214, 230, 0.8);
+            transform: scale(1.1);
+        }
+    }
+
+    .anime-details {
+        margin-top: 10px;
+        font-size: 0.9em;
+        opacity: 0.8;
+    }
+    </style>
+</head>
+<body>
+    <!-- <div class="header">
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+        <div class="shimmer"></div>
+        <h1>My Portfolio</h1>
+        <img src="images/cute-cat2.png" alt="White Cat" width="300">
+    </div> -->
+
+    <div class="navigation">
+        <a href="index.html">Home</a>
+        <a href="biodata.html">Biodata</a>
+        <a href="experience.html">Experience</a>
+        <a href="education.html">Education</a>
+        <a href="gallery.html">Gallery</a>
+    </div>
+
+    <div class="content">
+        <div class="welcome-card">
+            <h2 class="welcome-text">Welcome to My Purr-fect Space! 🐱</h2>
+            <p>Explore my journey, experiences, and memories through this cat-themed portfolio!</p>
+        </div>
+
+        <div class="feature-cards">
+            <div class="feature-card shopping-card">
+                <div class="feature-icon">🛍️</div>
+                <h3>Shopping Queen</h3>
+                <p>Love exploring malls and online shopping! ✨</p>
+                <div class="interest-details">
+                    <span class="interest-tag">Fashion</span>
+                    <span class="interest-tag">Beauty</span>
+                </div>
+            </div>
+        
+            <div class="feature-card anime-card">
+                <div class="feature-icon">🎬</div>
+                <h3>Anime Enthusiast</h3>
+                <p>Huge fan of Jujutsu Kaisen and anime culture! 🔮</p>
+                <div class="anime-details">
+                    <span class="anime-tag">呪術廻戦</span>
+                </div>
+            </div>
+        
+            <div class="feature-card cooking-card">
+                <div class="feature-icon">👩‍🍳</div>
+                <h3>Food Explorer</h3>
+                <p>Passionate about cooking and trying new recipes! 🍳</p>
+                <div class="interest-details">
+                    <span class="interest-tag">Cooking</span>
+                    <span class="interest-tag">Baking</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-container">
+            <div class="decorative-pattern"></div>
+            <div class="quote">
+                "Time spent with cats is never wasted" - Sigmund Freud
+            </div>
+        </div>
+
+        <div class="cat-showcase">
+            <img src="images/cute-cat.png" alt="Cute Cat" width="300" class="cat-animation">
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/thugisabelle?igsh=MWNkaXA3aXZoYXYzZw%3D%3D&utm_source=qr" class="social-button">📸 Instagram</a>
+            <a href="https://www.tiktok.com/@ivy.sabella?_t=8rd1YtxPfYf&_r=1" class="social-button">🎶 Tiktok</a>
+            <a href="#" class="social-button">🎨 Portfolio</a>
+        </div>
+    </div>
+
+    <script>
+        // Add mouse trail effect🎶
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.className = 'mouse-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            trail.style.position = 'fixed';
+            trail.style.width = '10px';
+            trail.style.height = '10px';
+            trail.style.background = '#ffd6e6';
+            trail.style.borderRadius = '50%';
+            trail.style.pointerEvents = 'none';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.style.transition = 'all 1s';
+                trail.style.opacity = '0';
+                trail.style.transform = 'scale(0)';
+                setTimeout(() => trail.remove(), 1000);
+            }, 100);
+        });
+    </script>
+</body>
+</html>

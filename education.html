@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Education - Nur Nabila</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8e8e8;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #5a5a5a;
+            overflow-x: hidden;
+        }
+        .header {
+            background-color: #e8f0ff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        .navigation {
+            background-color: #ffe8f0;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .navigation a {
+            color: #7c7c7c;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .navigation a:hover {
+            background-color: #ffd6e6;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+        .navigation a::after {
+            content: '🐱';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .navigation a:hover::after {
+            opacity: 1;
+            top: -15px;
+        }
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            animation: scaleIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .education-list {
+            list-style-position: inside;
+            padding: 0;
+        }
+        .education-list li {
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform-origin: left;
+            animation: slideInRight 0.5s ease-out forwards;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .education-list li:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        .education-list li:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        .achievement {
+            display: inline-block;
+            margin-top: 10px;
+            font-style: italic;
+            color: #7c7c7c;
+            position: relative;
+        }
+        .achievement::after {
+            content: '🎓';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: rotate 2s infinite;
+        }
+        @keyframes rotate {
+            0% { transform: translateY(-50%) rotate(0deg); }
+            100% { transform: translateY(-50%) rotate(360deg); }
+        }
+        .cat-grad {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            opacity: 0.2;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+        .floating-items {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .floating-item {
+            position: absolute;
+            animation: float 10s linear infinite;
+            opacity: 0.4;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .music-player {
+            text-align: center;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 1s;
+        }
+        .glow {
+            animation: glowEffect 2s infinite;
+        }
+        @keyframes glowEffect {
+            0%, 100% { text-shadow: 0 0 5px #ffd6e6; }
+            50% { text-shadow: 0 0 20px #ffd6e6; }
+        }
+        .cat-animation {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Education Items -->
+    <div class="floating-items" id="floatingItems"></div>
+
+    <div class="header">
+        <h1>My Education Journey</h1>
+        <img src="images/studying-cat.png" alt="Studying Cat" class="cat-animation" width="150">
+    </div>
+
+    <div class="navigation">
+        <a href="index.html">Home</a>
+        <a href="biodata.html">Biodata</a>
+        <a href="experience.html">Experience</a>
+        <a href="education.html">Education</a>
+        <a href="gallery.html">Gallery</a>
+    </div>
+
+    <div class="content">
+        <ol class="education-list">
+            <li>
+                <h3>Secondary Education</h3>
+                <p class="achievement">Convent Bukit Nanas Girl's School</p>
+                <p class="glow">Achievement: 8A in SPM</p>
+                <img src="images/grad-cat1.png" alt="Graduate Cat" class="cat-grad">
+            </li>
+            <li>
+                <h3>Tertiary Education</h3>
+                <p class="achievement">UITM</p>
+                <p class="glow">Current CGPA: 3.65<sub style=" margin-left: 3px; font-size: 0.8em; font-weight: 500;">uitm</sub></p>
+
+                <img src="images/grad-cat2.png" alt="Graduate Cat" class="cat-grad">
+            </li>
+        </ol>
+
+        <div class="music-player">
+            <audio controls autoplay loop>
+                <source src="music/convocation-song.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        // Floating education items animation
+        const items = ['📚', '🎓', '✏️', '📝', '🎨', '💻'];
+        function createFloatingItem() {
+            const item = document.createElement('div');
+            item.className = 'floating-item';
+            item.textContent = items[Math.floor(Math.random() * items.length)];
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            document.getElementById('floatingItems').appendChild(item);
+            
+            setTimeout(() => {
+                item.remove();
+            }, 10000);
+        }
+
+        setInterval(createFloatingItem, 1000);
+
+        // Mouse trail effect
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.className = 'mouse-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            trail.style.position = 'fixed';
+            trail.style.width = '10px';
+            trail.style.height = '10px';
+            trail.style.background = '#ffd6e6';
+            trail.style.borderRadius = '50%';
+            trail.style.pointerEvents = 'none';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.style.transition = 'all 1s';
+                trail.style.opacity = '0';
+                trail.style.transform = 'scale(0)';
+                setTimeout(() => trail.remove(), 1000);
+            }, 100);
+        });
+    </script>
+</body>
+</html>

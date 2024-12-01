@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biodata - Nur Nabila</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8e8e8;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #5a5a5a;
+            overflow-x: hidden;
+        }
+        .header {
+            background-color: #e8f0ff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        .navigation {
+            background-color: #ffe8f0;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .navigation a {
+            color: #7c7c7c;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .navigation a:hover {
+            background-color: #ffd6e6;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+        .navigation a::after {
+            content: '🐱';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .navigation a:hover::after {
+            opacity: 1;
+            top: -15px;
+        }
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            animation: scaleIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .biodata-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        .info-bullet {
+        color: #ffd6e6;
+        margin-right: 10px;
+        font-size: 0.8em;
+        display: inline-block;
+        animation: rotateBullet 2s infinite;
+    }
+    @keyframes rotateBullet {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(180deg); }
+    }
+    .info-item {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+        padding: 10px;
+        border-left: 4px solid #ffd6e6;
+        animation: slideRight 0.5s ease-out forwards;
+        opacity: 0;
+        background: rgba(255, 214, 230, 0.05);
+        border-radius: 0 5px 5px 0;
+        transition: all 0.3s ease;
+    }
+    .info-item:hover {
+        background: rgba(255, 214, 230, 0.1);
+        transform: translateX(5px);
+    }
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .info-label {
+        font-weight: 600;
+        color: #7c7c7c;
+        margin-right: 10px;
+        min-width: 120px; 
+    }
+        .underline {
+            text-decoration: underline;
+            text-decoration-color: #ffd6e6;
+            text-decoration-thickness: 2px;
+        }
+        .floating-hearts {
+            position: absolute;
+            pointer-events: none;
+        }
+        .floating-heart {
+            position: absolute;
+            animation: floatHeart 6s linear infinite;
+            opacity: 0.6;
+        }
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .clock-container {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2em;
+            font-weight: 500;
+            color: #5a5a5a;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: clockGlow 2s infinite;
+        }
+        @keyframes clockGlow {
+            0%, 100% { text-shadow: 0 0 5px #ffd6e6; }
+            50% { text-shadow: 0 0 20px #ffd6e6; }
+        }
+        .music-player {
+            text-align: center;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 1s;
+        }
+        .cat-animation {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .timetable-container {
+        margin: 30px auto;
+        max-width: 800px;
+        animation: slideUp 0.5s ease-out forwards;
+        opacity: 0;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .timetable {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .timetable th {
+            background: #ffd6e6;
+            color: #5a5a5a;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .timetable td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .timetable tr:hover td {
+            background: #fff5f8;
+            transform: scale(1.01);
+        }
+
+        .timetable tr td:first-child {
+            font-weight: 500;
+            color: #7c7c7c;
+            white-space: nowrap;
+        }
+
+    .schedule-title {
+            color: #5a5a5a;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .schedule-title::after {
+            content: '📅';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: bounce 2s infinite;
+        }
+    .timetable-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 300px;
+            animation: slideRight 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .biodata-card, .timetable-card {
+                width: 100%;
+            }
+        }
+        .styled-underline {
+        text-decoration: underline;
+        text-decoration-color: #ffd6e6;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px; 
+        padding-bottom: 2px;
+    }
+
+    .styled-underline:hover {
+        text-decoration-color: #ff9ecd;
+        text-decoration-thickness: 3px;
+        transition: all 0.3s ease;
+    }
+    .intro-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flash-content {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flash-circle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ffd6e6;
+        border-radius: 50%;
+        animation: flashExpand 1s ease-out forwards;
+    }
+
+    .intro-cat {
+        position: absolute;
+        width: 300px;
+        opacity: 0;
+        transform: scale(0.5);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        animation: videoAppear 0.5s ease-out forwards;
+        animation-delay: 1s;
+    }
+
+    @keyframes flashExpand {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(30);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(50);
+            opacity: 0;
+        }
+    }
+
+    @keyframes videoAppear {
+        from {
+            opacity: 0;
+            transform: scale(0.5) rotate(-10deg);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+    }
+
+    /* Hide all content initially */
+    .header, .navigation, .content {
+        opacity: 0;
+        animation: contentFadeIn 1s ease-out forwards;
+        animation-delay: 4.5s; 
+    }
+
+    @keyframes contentFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="intro-animation" class="intro-container">
+        <div class="flash-content">
+            <div class="flash-circle"></div>
+            <video id="intro-video" class="intro-cat" style="display: none;" muted>
+                <source src="video/random_cat2.MP4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    <div class="header">
+        <h1>My Biodata</h1>
+        <img src="images/cat-profile.png" alt="Cat Profile" class="cat-animation" width="150">
+    </div>
+
+    <div class="navigation">
+        <a href="index.html">Home</a>
+        <a href="biodata.html">Biodata</a>
+        <a href="experience.html">Experience</a>
+        <a href="education.html">Education</a>
+        <a href="gallery.html">Gallery</a>
+    </div>
+
+    <div class="content">
+        <div class="biodata-card">
+            <div class="info-item" style="animation-delay: 0.2s">
+                <span class="info-bullet">■</span>
+                <span class="info-label">Name:</span>
+                <span class="underline">Nur Nabila binti Omar</span>
+            </div>
+            <div class="info-item" style="animation-delay: 0.4s">
+                <span class="info-bullet">■</span>
+                <span class="info-label">Age:</span>
+                20
+            </div>
+            <div class="info-item" style="animation-delay: 0.6s">
+                <span class="info-bullet">■</span>
+                <span class="info-label">Birthplace:</span>
+                Johor
+            </div>
+            <div class="info-item" style="animation-delay: 0.8s">
+                <span class="info-bullet">■</span>
+                <span class="info-label">Matrix Number:</span>
+                2022643382
+            </div>
+            <div class="info-item" style="animation-delay: 1.0s">
+                <span class="info-bullet">■</span>
+                <span class="info-label">Class:</span>
+                CDIM1105A
+            </div>
+        
+            <div class="clock-container" id="clock">00:00:00</div>
+        
+            <div class="music-player">
+                <audio controls autoplay loop>
+                    <source src="music/sweet-song.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+        <div class="timetable-card">
+            <h2 class="schedule-title">My Weekend Schedule</h2>
+            <table class="timetable">
+                <tr>
+                    <th>Time</th>
+                    <th>Saturday & Sunday</th>
+                </tr>
+                <tr>
+                    <td>7:00 AM - 8:00 AM</td>
+                    <td>
+                        <sup style="font-size: 0.7em; color: #ffd6e6; display: block; margin-bottom: 2px; ">woo strong!</sup>
+                        Gym 🏋️‍♀️
+                    </td>
+                </tr>
+                <tr>
+                    <td>9:00 AM - 10:00 AM</td>
+                    <td>
+                        <u class="styled-underline">Breakfast</u> 🍳
+                    </td>
+                </tr>
+                <tr>
+                    <td>11:00 AM - 4:00 PM</td>
+                    <td>Laundry 🧺 | Prayer 🤲 | Room Chores 🧹</td>
+                </tr>
+                <tr>
+                    <td>10:00 PM</td>
+                    <td>Sleep 😴</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div id="hearts-container"></div>
+
+    <script>
+        const tableCells = document.querySelectorAll('.timetable td');
+        tableCells.forEach(cell => {
+            cell.addEventListener('mouseover', function() {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💖';
+                heart.style.position = 'fixed';
+                heart.style.left = event.pageX + 'px';
+                heart.style.top = event.pageY + 'px';
+                heart.style.pointerEvents = 'none';
+                heart.style.animation = 'floatHeart 1s ease-out forwards';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 1000);
+            });
+        });
+    </script>
+    <script>
+          setTimeout(() => {
+        const video = document.getElementById('intro-video');
+        video.style.display = 'block';
+        video.play();
+    }, 800);
+
+    // Listen for video end
+    document.getElementById('intro-video').addEventListener('ended', () => {
+        const intro = document.getElementById('intro-animation');
+        intro.style.transition = 'opacity 0.5s ease';
+        intro.style.opacity = '0';
+        setTimeout(() => {
+            intro.remove();
+        }, 500);
+    });
+
+    // Fallback to remove intro if video doesn't play
+    setTimeout(() => {
+        const intro = document.getElementById('intro-animation');
+        if (intro) {
+            intro.style.transition = 'opacity 0.5s ease';
+            intro.style.opacity = '0';
+            setTimeout(() => {
+                intro.remove();
+            }, 500);
+        }
+    }, 4000);
+
+        // Clock function
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('clock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.className = 'floating-heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('hearts-container').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createHeart, 500);
+
+        // Mouse trail effect
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.className = 'mouse-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            trail.style.position = 'fixed';
+            trail.style.width = '10px';
+            trail.style.height = '10px';
+            trail.style.background = '#ffd6e6';
+            trail.style.borderRadius = '50%';
+            trail.style.pointerEvents = 'none';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.style.transition = 'all 1s';
+                trail.style.opacity = '0';
+                trail.style.transform = 'scale(0)';
+                setTimeout(() => trail.remove(), 1000);
+            }, 100);
+        });
+    </script>
+</body>
+</html>

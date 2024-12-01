@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gallery - Nur Nabila</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8e8e8;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #5a5a5a;
+            overflow-x: hidden;
+        }
+        .header {
+            background-color: #e8f0ff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        .navigation {
+            background-color: #ffe8f0;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .navigation a {
+            color: #7c7c7c;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .navigation a:hover {
+            background-color: #ffd6e6;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+        .navigation a::after {
+            content: '🐱';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .navigation a:hover::after {
+            opacity: 1;
+            top: -15px;
+        }
+        .gallery-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            columns: 3;
+            column-gap: 20px;
+            padding: 20px;
+        }
+        @media (max-width: 900px) {
+            .gallery-container {
+                columns: 2;
+            }
+        }
+        @media (max-width: 600px) {
+            .gallery-container {
+                columns: 1;
+            }
+        }
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            transform: scale(0);
+            animation: scaleIn 0.5s ease forwards;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .gallery-image {
+            width: 100%;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 214, 230, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: 0.3s ease;
+            border-radius: 10px;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-caption {
+            color: #5a5a5a;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.1em;
+            transform: translateY(20px);
+            transition: 0.3s ease;
+        }
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        .social-links {
+            text-align: center;
+            margin: 20px 0;
+            animation: bounceIn 1s ease;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            70% { transform: scale(0.9); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .social-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #fff;
+            color: #5a5a5a;
+            text-decoration: none;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .social-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            background: #ffd6e6;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 214, 230, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #fff;
+            border-radius: 50%;
+            border-top-color: #ffd6e6;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        .floating-cats {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .floating-cat {
+            position: absolute;
+            animation: float 15s linear infinite;
+            opacity: 0.5;
+        }
+        @keyframes float {
+            from { transform: translateX(-100vw) rotate(0deg); }
+            to { transform: translateX(100vw) rotate(360deg); }
+        }
+        .cat-animation {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .gallery-item video.gallery-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover video.gallery-image {
+        transform: scale(1.05);
+    }
+
+    .gallery-item video::-webkit-media-controls {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover video::-webkit-media-controls {
+        opacity: 1;
+    }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Floating Cats -->
+    <div class="floating-cats" id="floatingCats"></div>
+
+    <div class="header">
+        <h1>My Gallery</h1>
+        <img src="images/photographer-cat.png" alt="Photographer Cat" class="cat-animation" width="150">
+    </div>
+
+    <div class="navigation">
+        <a href="index.html">Home</a>
+        <a href="biodata.html">Biodata</a>
+        <a href="experience.html">Experience</a>
+        <a href="education.html">Education</a>
+        <a href="gallery.html">Gallery</a>
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery-item" style="animation-delay: 0.1s">
+            <video class="gallery-image" controls autoplay muted loop>
+                <source src="video/company_trip.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="gallery-overlay">
+                <div class="gallery-caption">Company Trip 2024 , Pahang</div>
+            </div>
+        </div>
+        <div class="gallery-item" style="animation-delay: 0.1s">
+            <img src="images/gallery2.jpg" alt="Gallery Image 1" class="gallery-image">
+            <div class="gallery-overlay">
+                <div class="gallery-caption">Me</div>
+            </div>
+        </div>
+        <div class="gallery-item" style="animation-delay: 0.1s">
+            <img src="images/gallery3.jpg" alt="Gallery Image 1" class="gallery-image">
+            <div class="gallery-overlay">
+                <div class="gallery-caption">My Trio after 2 years and half</div>
+            </div>
+        </div>
+        <div class="gallery-item" style="animation-delay: 0.1s">
+            <img src="images/family.jpg" alt="Gallery Image 1" class="gallery-image">
+            <div class="gallery-overlay">
+                <div class="gallery-caption">My and My Family</div>
+            </div>
+        </div>
+        <div class="gallery-item" style="animation-delay: 0.1s">
+            <img src="images/family_1.jpg" alt="Gallery Image 1" class="gallery-image">
+            <div class="gallery-overlay">
+                <div class="gallery-caption">My Sister and I</div>
+            </div>
+        </div>
+        <div class="gallery-item" style="animation-delay: 0.1s">
+            <video class="gallery-image" controls autoplay muted loop>
+                <source src="video/gallery5.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="gallery-overlay">
+                <div class="gallery-caption">me at the one of biggest concert in malaysia on June 2024</div>
+            </div>
+        </div>
+        <div class="gallery-item" style="animation-delay: 0.1s">
+            <video class="gallery-image" controls autoplay muted loop>
+                <source src="video/company_trip2.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="gallery-overlay">
+                <div class="gallery-caption">memories 🧸</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-links">
+        <a href="https://www.instagram.com/thugisabelle?igsh=MWNkaXA3aXZoYXYzZw%3D%3D&utm_source=qr" target="_blank" class="social-button">
+            📸 Follow me on Instagram
+        </a>
+    </div>
+
+    <script>
+        // Loading overlay
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Floating cats animation
+        function createFloatingCat() {
+            const cat = document.createElement('div');
+            cat.className = 'floating-cat';
+            cat.innerHTML = '🐱';
+            cat.style.top = Math.random() * 100 + 'vh';
+            cat.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.getElementById('floatingCats').appendChild(cat);
+            
+            setTimeout(() => {
+                cat.remove();
+            }, 15000);
+        }
+
+        setInterval(createFloatingCat, 2000);
+
+        // Mouse trail effect
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.className = 'mouse-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            trail.style.position = 'fixed';
+            trail.style.width = '10px';
+            trail.style.height = '10px';
+            trail.style.background = '#ffd6e6';
+            trail.style.borderRadius = '50%';
+            trail.style.pointerEvents = 'none';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.style.transition = 'all 1s';
+                trail.style.opacity = '0';
+                trail.style.transform = 'scale(0)';
+                setTimeout(() => trail.remove(), 1000);
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experience - Nur Nabila</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8e8e8;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #5a5a5a;
+            overflow-x: hidden;
+        }
+        .header {
+            background-color: #e8f0ff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        .navigation {
+            background-color: #ffe8f0;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .navigation a {
+            color: #7c7c7c;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .navigation a:hover {
+            background-color: #ffd6e6;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+        .navigation a::after {
+            content: '🐱';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .navigation a:hover::after {
+            opacity: 1;
+            top: -15px;
+        }
+        .content {
+            max-width: 1000px;
+            margin: 20px auto;
+            position: relative;
+            animation: scaleIn 1s ease-out;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #ffd6e6;
+            animation: growLine 2s ease-out forwards;
+        }
+        @keyframes growLine {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+        .timeline-item {
+            width: 100%;
+            margin-bottom: 50px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .timeline-content {
+            width: 45%;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 55%;
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 55%;
+        }
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffd6e6;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(255, 214, 230, 0.7); }
+            70% { transform: translateY(-50%) scale(1.1); box-shadow: 0 0 0 10px rgba(255, 214, 230, 0); }
+            100% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(255, 214, 230, 0); }
+        }
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -60px;
+        }
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -60px;
+        }
+        .timeline-date {
+            color: #ffd6e6;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .timeline-title {
+            color: #5a5a5a;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        .timeline-description {
+            line-height: 1.6;
+        }
+        .cat-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: wiggle 2s infinite;
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            50% { transform: translateY(-50%) rotate(10deg); }
+        }
+        .timeline-item:nth-child(odd) .cat-icon {
+            right: 48%;
+        }
+        .timeline-item:nth-child(even) .cat-icon {
+            left: 48%;
+        }
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .floating-element {
+            position: absolute;
+            animation: float 15s linear infinite;
+            opacity: 0.3;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        .cat-animation {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <div class="header">
+        <h1>Work Experience</h1>
+        <img src="images/working-cat.png" alt="Working Cat" class="cat-animation" width="150">
+    </div>
+
+    <div class="navigation">
+        <a href="index.html">Home</a>
+        <a href="biodata.html">Biodata</a>
+        <a href="experience.html">Experience</a>
+        <a href="education.html">Education</a>
+        <a href="gallery.html">Gallery</a>
+    </div>
+
+    <div class="content">
+        <div class="timeline">
+            <div class="timeline-item" style="animation-delay: 0.3s">
+                <div class="timeline-content">
+                    <div class="timeline-date">After SPM</div>
+                    <div class="timeline-title">Preschool Teacher</div>
+                    <div class="timeline-description">
+                        Teaching and caring for young children for two months, developing educational activities and fostering early learning.
+                    </div>
+                </div>
+                <img src="images/teacher-cat.png" alt="Teacher Cat" class="cat-icon">
+            </div>
+
+            <div class="timeline-item" style="animation-delay: 0.6s">
+                <div class="timeline-content">
+                    <div class="timeline-date">Semester Break</div>
+                    <div class="timeline-title">Starbucks Barista</div>
+                    <div class="timeline-description">
+                        Crafting beverages and providing excellent customer service while maintaining store cleanliness and efficiency.
+                    </div>
+                </div>
+                <img src="images/coffee-cat.png" alt="Coffee Cat" class="cat-icon">
+            </div>
+
+            <div class="timeline-item" style="animation-delay: 0.9s">
+                <div class="timeline-content">
+                    <div class="timeline-date">Semester Break</div>
+                    <div class="timeline-title">Admin Assistant</div>
+                    <div class="timeline-description">
+                        Supporting administrative operations at a Law Firm, managing documents and assisting with office procedures.
+                    </div>
+                </div>
+                <img src="images/office-cat.png" alt="Office Cat" class="cat-icon">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Floating work elements animation
+        const elements = ['💼', '📊', '💻', '📱', '✉️', '📝'];
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            element.textContent = elements[Math.floor(Math.random() * elements.length)];
+            element.style.left = Math.random() * 100 + 'vw';
+            element.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            document.getElementById('floatingElements').appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 15000);
+        }
+
+        setInterval(createFloatingElement, 2000);
+
+        // Mouse trail effect
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.className = 'mouse-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            trail.style.position = 'fixed';
+            trail.style.width = '10px';
+            trail.style.height = '10px';
+            trail.style.background = '#ffd6e6';
+            trail.style.borderRadius = '50%';
+            trail.style.pointerEvents = 'none';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.style.transition = 'all 1s';
+                trail.style.opacity = '0';
+                trail.style.transform = 'scale(0)';
+                setTimeout(() => trail.remove(), 1000);
+            }, 100);
+        });
+    </script>
+</body>
+</html>
